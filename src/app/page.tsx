@@ -1,103 +1,118 @@
-import Image from "next/image";
+'use client';
+
+import { useState } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
+import LoginModal from '@/components/LoginModal';
+import Link from 'next/link';
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const { user, isLoading } = useAuth();
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const handleCampaignClick = () => {
+    if (user) {
+      // User is logged in, go to campaign
+      window.location.href = '/campaign';
+    } else {
+      // User not logged in, show login modal
+      setShowLoginModal(true);
+    }
+  };
+
+  const handleMenuClick = () => {
+    setShowLoginModal(true);
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black mx-auto"></div>
+          <p className="mt-2 text-sm text-gray-600">กำลังโหลด...</p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <header className="p-4 flex justify-between items-center">
+        <div className="flex items-center space-x-3">
+          <div className="w-10 h-10 bg-gradient-to-br from-orange-400 to-blue-500 rounded-full flex items-center justify-center">
+            <span className="text-white font-bold text-sm">P</span>
+          </div>
+          <div>
+            <h1 className="text-lg font-bold text-black">PAIMAI</h1>
+            <p className="text-xs text-gray-600">Collectible Pass</p>
+          </div>
+        </div>
+        
+        {/* Hamburger Menu */}
+        <button 
+          onClick={handleMenuClick}
+          className="text-gray-600 hover:text-gray-800"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </header>
+
+      {/* Campaign Banner - Clickable */}
+      <section className="px-4 mb-6">
+        <button 
+          onClick={handleCampaignClick}
+          className="w-full aspect-[16/9] bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center text-white hover:from-purple-600 hover:to-pink-600 transition-all duration-300"
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <div className="text-center">
+            <h2 className="text-xl font-bold mb-2">31 Cafe 31 Artist</h2>
+            <p className="text-sm opacity-90">เก็บสแตมป์ครบ 31 ชิ้น</p>
+            {user && (
+              <p className="text-xs opacity-75 mt-2">👋 สวัสดี {user.name}</p>
+            )}
+          </div>
+        </button>
+      </section>
+
+      {/* News Section */}
+      <section className="px-4 mb-6">
+        <div className="flex justify-between items-center mb-3">
+          <h3 className="font-semibold text-gray-900">News</h3>
+          <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </div>
+        
+        <div className="bg-gray-50 rounded-lg p-4">
+          <p className="text-xs text-gray-500 mb-1">ART ACTIVITY</p>
+          <h4 className="font-bold text-red-500 mb-2">31 CAFÉS 31 ARTISTS</h4>
+          <p className="text-xs text-gray-600 leading-relaxed">
+            31 Cafés 31 Artists คือกิจกรรมที่สรรหาศิลปินกลุ่มทำงานสร้างสรร 31 คน 
+            ร่วมชัด โชว์ผลงานศิลปะร่วมกับคาเฟ่ 31 ร้านในเมืองโคราช เพื่อกระตุ้นเศรษฐกิจและกิจกรรม
+          </p>
+        </div>
+      </section>
+
+      {/* Info Section */}
+      <section className="px-4 space-y-4">
+        <div className="bg-gray-50 rounded-lg p-4">
+          <h3 className="font-semibold text-sm mb-2">วิธีการเล่น</h3>
+          <ul className="text-xs text-gray-600 space-y-1">
+            <li>• เข้าสู่ระบบด้วย Google หรือ LINE</li>
+            <li>• เชื่อม Bitkub NEXT Wallet</li>
+            <li>• ไปยังร้านค้า 31 แห่งในโคราช</li>
+            <li>• สแกน QR Code เพื่อเก็บสแตมป์</li>
+            <li>• รับ NFT ไปยังกระเป๋า Bitkub</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Login Modal */}
+      <LoginModal 
+        isOpen={showLoginModal} 
+        onClose={() => setShowLoginModal(false)} 
+      />
     </div>
   );
 }

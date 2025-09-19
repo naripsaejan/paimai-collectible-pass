@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ThirdwebProvider } from "@/lib/thirdweb";
+import { AuthProvider } from "@/contexts/AuthContext";
+import BottomNav from "@/components/BottomNav";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +30,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <AuthProvider>
+          <ThirdwebProvider>
+            <div className="pb-14">{children}</div>
+            <BottomNav />
+          </ThirdwebProvider>
+        </AuthProvider>
       </body>
     </html>
   );
