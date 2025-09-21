@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThirdwebProvider } from "@/lib/thirdweb";
 import { AuthProvider } from "@/contexts/AuthContext";
 import BottomNav from "@/components/BottomNav";
+import Header from "@/components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,7 @@ export default function RootLayout({
       >
         <AuthProvider>
           <ThirdwebProvider>
+            <Header />
             <div className="pb-14">{children}</div>
             <BottomNav />
           </ThirdwebProvider>

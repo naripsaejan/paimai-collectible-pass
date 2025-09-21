@@ -2,27 +2,10 @@
 
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
-import LoginModal from "@/components/LoginModal";
-import Link from "next/link";
 import Image from "next/image";
 
 export default function Home() {
   const { user, isLoading } = useAuth();
-  const [showLoginModal, setShowLoginModal] = useState(false);
-
-  const handleCampaignClick = () => {
-    if (user) {
-      // User is logged in, go to campaign
-      window.location.href = "/campaign";
-    } else {
-      // User not logged in, show login modal
-      setShowLoginModal(true);
-    }
-  };
-
-  const handleMenuClick = () => {
-    setShowLoginModal(true);
-  };
 
   if (isLoading) {
     return (
@@ -37,45 +20,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="p-4 flex justify-between items-center">
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-orange-400 to-blue-500 rounded-full flex items-center justify-center">
-            <span className="text-white font-bold text-sm">P</span>
-          </div>
-          <div>
-            <h1 className="text-lg font-bold text-black">PAIMAI</h1>
-            <p className="text-xs text-gray-600">Collectible Pass</p>
-          </div>
-        </div>
-
-        {/* Hamburger Menu */}
-        <button
-          onClick={handleMenuClick}
-          className="text-gray-600 hover:text-gray-800"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
-        </button>
-      </header>
-
       {/* Campaign Banner - Clickable */}
       <section className="px-4 mb-6">
-        <button
-          onClick={handleCampaignClick}
-          className="w-full aspect-[16/9] bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center text-white hover:from-purple-600 hover:to-pink-600 transition-all duration-300"
-        >
+        <button className="w-full aspect-[16/9] bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center text-white hover:from-purple-600 hover:to-pink-600 transition-all duration-300">
           <div className="text-center">
             <h2 className="text-xl font-bold mb-2">31 Cafe 31 Artist</h2>
             <p className="text-sm opacity-90">เก็บสแตมป์ครบ 31 ชิ้น</p>
@@ -91,7 +38,7 @@ export default function Home() {
         <div className="flex justify-between items-center mb-3">
           <h3 className="font-semibold text-gray-900">News</h3>
           <Image
-            src="/icons/Chevron_Right.svg"
+            src="/icons/chevron_right.svg"
             alt="Chevron Right"
             width={16}
             height={16}
