@@ -1,9 +1,10 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useAuth } from '@/contexts/AuthContext';
-import LoginModal from '@/components/LoginModal';
-import Link from 'next/link';
+import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import LoginModal from "@/components/LoginModal";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   const { user, isLoading } = useAuth();
@@ -12,7 +13,7 @@ export default function Home() {
   const handleCampaignClick = () => {
     if (user) {
       // User is logged in, go to campaign
-      window.location.href = '/campaign';
+      window.location.href = "/campaign";
     } else {
       // User not logged in, show login modal
       setShowLoginModal(true);
@@ -47,21 +48,31 @@ export default function Home() {
             <p className="text-xs text-gray-600">Collectible Pass</p>
           </div>
         </div>
-        
+
         {/* Hamburger Menu */}
-        <button 
+        <button
           onClick={handleMenuClick}
           className="text-gray-600 hover:text-gray-800"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16"
+            />
           </svg>
         </button>
       </header>
 
       {/* Campaign Banner - Clickable */}
       <section className="px-4 mb-6">
-        <button 
+        <button
           onClick={handleCampaignClick}
           className="w-full aspect-[16/9] bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center text-white hover:from-purple-600 hover:to-pink-600 transition-all duration-300"
         >
@@ -79,17 +90,22 @@ export default function Home() {
       <section className="px-4 mb-6">
         <div className="flex justify-between items-center mb-3">
           <h3 className="font-semibold text-gray-900">News</h3>
-          <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
+          <Image
+            src="/icons/Chevron_Right.svg"
+            alt="Chevron Right"
+            width={16}
+            height={16}
+            className="text-gray-400"
+          />
         </div>
-        
+
         <div className="bg-gray-50 rounded-lg p-4">
           <p className="text-xs text-gray-500 mb-1">ART ACTIVITY</p>
           <h4 className="font-bold text-red-500 mb-2">31 CAFÉS 31 ARTISTS</h4>
           <p className="text-xs text-gray-600 leading-relaxed">
-            31 Cafés 31 Artists คือกิจกรรมที่สรรหาศิลปินกลุ่มทำงานสร้างสรร 31 คน 
-            ร่วมชัด โชว์ผลงานศิลปะร่วมกับคาเฟ่ 31 ร้านในเมืองโคราช เพื่อกระตุ้นเศรษฐกิจและกิจกรรม
+            31 Cafés 31 Artists คือกิจกรรมที่สรรหาศิลปินกลุ่มทำงานสร้างสรร 31 คน
+            ร่วมชัด โชว์ผลงานศิลปะร่วมกับคาเฟ่ 31 ร้านในเมืองโคราช
+            เพื่อกระตุ้นเศรษฐกิจและกิจกรรม
           </p>
         </div>
       </section>
@@ -107,12 +123,6 @@ export default function Home() {
           </ul>
         </div>
       </section>
-
-      {/* Login Modal */}
-      <LoginModal 
-        isOpen={showLoginModal} 
-        onClose={() => setShowLoginModal(false)} 
-      />
     </div>
   );
 }
