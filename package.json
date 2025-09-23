@@ -13,6 +13,7 @@
   "dependencies": {
     "@auth/prisma-adapter": "^2.10.0",
     "@bitkub-chain/sdk.js": "^1.0.1",
+    "@mui/material": "^7.3.2",
     "@prisma/client": "^6.16.2",
     "@supabase/supabase-js": "^2.57.4",
     "@tailwindcss/postcss": "^4.1.13",
@@ -25,6 +26,7 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-leaflet": "^5.0.0",
+    "swiper": "^12.0.2",
     "thirdweb": "^5.0.0",
     "uuid": "^9.0.1",
     "zod": "^4.1.9"

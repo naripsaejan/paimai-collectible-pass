@@ -1,75 +1,146 @@
 "use client";
 
-import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import Image from "next/image";
+import CircleButton from "@/components/StyleCustom/CircleButton";
+import { Box, Typography, Button, CircularProgress } from "@mui/material";
+import BannerSlider from "@/components/StyleCustom/BannerSlider";
 
 export default function Home() {
   const { user, isLoading } = useAuth();
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black mx-auto"></div>
-          <p className="mt-2 text-sm text-gray-600">กำลังโหลด...</p>
-        </div>
-      </div>
+      <Box
+        sx={{
+          minHeight: "100vh",
+          bgcolor: "white",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
+        <CircularProgress size={24} sx={{ mb: 2 }} />
+        <Typography variant="body2" color="text.secondary">
+          กำลังโหลด...
+        </Typography>
+      </Box>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Campaign Banner - Clickable */}
-      <section className="px-4 mb-6">
-        <button className="w-full aspect-[16/9] bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center text-white hover:from-purple-600 hover:to-pink-600 transition-all duration-300">
-          <div className="text-center">
-            <h2 className="text-xl font-bold mb-2">31 Cafe 31 Artist</h2>
-            <p className="text-sm opacity-90">เก็บสแตมป์ครบ 31 ชิ้น</p>
-            {user && (
-              <p className="text-xs opacity-75 mt-2">👋 สวัสดี {user.name}</p>
-            )}
-          </div>
-        </button>
-      </section>
+    <Box sx={{ minHeight: "100vh", bgcolor: "white" }}>
+      {/* Campaign Section */}
+      <Box sx={{ px: 2, mb: 3 }}>
+        <Box sx={{ display: "flex", alignItems: "center", mb: 1.5 }}>
+          <Typography
+            variant="h6"
+            fontWeight={600}
+            color="text.primary"
+            sx={{ mr: "6px" }}
+          >
+            Campaign
+          </Typography>
+          <CircleButton
+            size={25}
+            color="#F5F5F5"
+            icon={
+              <Image
+                src="/icons/chevron_right.svg"
+                alt="Chevron Right"
+                width={18}
+                height={18}
+              />
+            }
+            onClick={() => alert("ไปที่ Campaign")}
+          />
+        </Box>
+
+        <Button
+          fullWidth
+          sx={{
+            aspectRatio: "16/9",
+            borderRadius: 2,
+            background: "linear-gradient(135deg, #9333ea, #ec4899)",
+            color: "white",
+            textTransform: "none",
+            transition: "0.3s",
+            "&:hover": {
+              background: "linear-gradient(135deg, #7e22ce, #db2777)",
+            },
+          }}
+        >
+          <Box textAlign="center">
+            <BannerSlider autoplay={true} />
+          </Box>
+        </Button>
+      </Box>
 
       {/* News Section */}
-      <section className="px-4 mb-6">
-        <div className="flex justify-between items-center mb-3">
-          <h3 className="font-semibold text-gray-900">News</h3>
-          <Image
-            src="/icons/chevron_right.svg"
-            alt="Chevron Right"
-            width={16}
-            height={16}
-            className="text-gray-400"
+      <Box sx={{ px: 2, mb: 3 }}>
+        <Box sx={{ display: "flex", alignItems: "center", mb: 1.5 }}>
+          <Typography
+            variant="h6"
+            fontWeight={600}
+            color="text.primary"
+            sx={{ mr: "6px" }}
+          >
+            News
+          </Typography>
+          <CircleButton
+            size={25}
+            color="#F5F5F5"
+            icon={
+              <Image
+                src="/icons/chevron_right.svg"
+                alt="Chevron Right"
+                width={18}
+                height={18}
+              />
+            }
+            onClick={() => alert("ไปที่ Campaign")}
           />
-        </div>
+        </Box>
 
-        <div className="bg-gray-50 rounded-lg p-4">
-          <p className="text-xs text-gray-500 mb-1">ART ACTIVITY</p>
-          <h4 className="font-bold text-red-500 mb-2">31 CAFÉS 31 ARTISTS</h4>
-          <p className="text-xs text-gray-600 leading-relaxed">
+        <Box sx={{ bgcolor: "grey.50", borderRadius: 2, p: 2 }}>
+          <Typography variant="caption" color="text.secondary" gutterBottom>
+            ART ACTIVITY
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            fontWeight="bold"
+            color="error"
+            gutterBottom
+          >
+            31 CAFÉS 31 ARTISTS
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
             31 Cafés 31 Artists คือกิจกรรมที่สรรหาศิลปินกลุ่มทำงานสร้างสรร 31 คน
-            ร่วมชัด โชว์ผลงานศิลปะร่วมกับคาเฟ่ 31 ร้านในเมืองโคราช
+            ร่วมจัดแสดงผลงานศิลปะกับคาเฟ่ 31 ร้านในเมืองโคราช
             เพื่อกระตุ้นเศรษฐกิจและกิจกรรม
-          </p>
-        </div>
-      </section>
+          </Typography>
+        </Box>
+      </Box>
 
       {/* Info Section */}
-      <section className="px-4 space-y-4">
-        <div className="bg-gray-50 rounded-lg p-4">
-          <h3 className="font-semibold text-sm mb-2">วิธีการเล่น</h3>
-          <ul className="text-xs text-gray-600 space-y-1">
-            <li>• เข้าสู่ระบบด้วย Google หรือ LINE</li>
-            <li>• เชื่อม Bitkub NEXT Wallet</li>
-            <li>• ไปยังร้านค้า 31 แห่งในโคราช</li>
-            <li>• สแกน QR Code เพื่อเก็บสแตมป์</li>
-            <li>• รับ NFT ไปยังกระเป๋า Bitkub</li>
-          </ul>
-        </div>
-      </section>
-    </div>
+      <Box sx={{ px: 2, mb: 4 }}>
+        <Box sx={{ bgcolor: "grey.50", borderRadius: 2, p: 2 }}>
+          <Typography variant="subtitle2" fontWeight={600} gutterBottom>
+            วิธีการเล่น
+          </Typography>
+          <Box
+            component="ul"
+            sx={{ pl: 2, m: 0, fontSize: "0.8rem", color: "text.secondary" }}
+          >
+            <li>เข้าสู่ระบบด้วย Google หรือ LINE</li>
+            <li>เชื่อม Bitkub NEXT Wallet</li>
+            <li>ไปร้านค้า 31 แห่งในโคราช</li>
+            <li>สแกน QR Code เพื่อเก็บสแตมป์</li>
+            <li>รับ NFT ไปยังกระเป๋า Bitkub</li>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 }
