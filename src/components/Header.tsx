@@ -1,5 +1,6 @@
 "use client";
 
+import { Box } from "@mui/material";
 import Image from "next/image";
 
 interface TopbarProps {
@@ -8,22 +9,33 @@ interface TopbarProps {
 
 export default function Header({ onMenuClick }: TopbarProps) {
   return (
-    <header className="px-4 py-3 flex justify-between items-center border-b bg-white">
-      {/* Logo + Title */}
+    <Box
+      component="header"
+      sx={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 50,
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        px: 2,
+        bgcolor: "white",
+        borderBottom: "1px solid #0000000D",
+      }}
+    >
       <div className="flex items-center space-x-3">
-        <div className="w-10 h-10 bg-gradient-to-br from-orange-400 to-blue-500 rounded-full flex items-center justify-center">
-          <span className="text-white font-bold text-sm">P</span>
-        </div>
-        <div>
-          <h1 className="text-lg font-bold text-black">PAIMAI</h1>
-          <p className="text-xs text-gray-600 -mt-1">Collectible Pass</p>
-        </div>
+        <Image
+          src="/logo/paimai_collectible_pass.svg"
+          alt="Menu"
+          width={76}
+          height={76}
+        />
       </div>
-
-      {/* Hamburger Menu */}
       <div>
-        <Image src="/icons/menu.svg" alt="Menu" width={24} height={24} />
+        <Image src="/icons/menu.svg" alt="Menu" width={40} height={40} />
       </div>
-    </header>
+    </Box>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 
 const items = [
@@ -13,10 +13,31 @@ const items = [
 
 export default function BottomNav() {
   const pathname = usePathname();
+  const router = useRouter();
   return (
     <nav className="fixed bottom-0 left-0 right-0 border-t bg-white grid grid-cols-4 text-sm">
       {items.map((it) => {
         const active = pathname === it.href;
+        if (it.href === "/wallet") {
+          return (
+            <Link
+              key={it.href}
+              href={it.href}
+              className={`flex flex-col items-center justify-center py-2 transition-colors ${
+                active ? "text-blue-600 font-semibold" : "text-gray-500"
+              }`}
+              onClick={() => router.push("/wallet")}
+            >
+              <Image
+                src={it.icon}
+                alt="nav icon"
+                width={24}
+                height={24}
+                className={`mb-1 ${active ? "opacity-100" : "opacity-70"}`}
+              />
+            </Link>
+          );
+        }
         return (
           <Link
             key={it.href}

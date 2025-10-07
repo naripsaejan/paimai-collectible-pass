@@ -1,67 +1,283 @@
+"use client";
+
+import CircleButton from "@/components/StyleCustom/CircleButton";
+import { Box, Button, Typography } from "@mui/material";
+import Image from "next/image";
+
 export default function WalletPage() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="p-4 border-b">
-        <h1 className="text-xl font-bold">วอเล็ท</h1>
-      </header>
+    <Box className="min-h-screen bg-white">
+      <Box sx={{ px: 2, mb: 3 }}>
+        <Button
+          fullWidth
+          sx={{
+            aspectRatio: "16/9",
+            borderRadius: 2,
+            color: "white",
+            textTransform: "none",
+            transition: "0.3s",
+          }}
+          onClick={() => alert("check click")}
+        >
+          <Box textAlign="center">
+            <Image
+              src="/imgMock/Image1.svg"
+              alt="Chevron Right"
+              width={343}
+              height={192.94}
+            />
+          </Box>
+        </Button>
+      </Box>
 
-      <div className="p-6 space-y-6">
-        {/* Wallet Status */}
-        <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg p-4 text-white">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="font-bold">กระเป๋า Bitkub NEXT</h3>
-              <p className="text-sm opacity-90">เชื่อมแล้ว</p>
-            </div>
-            <div className="text-2xl">👛</div>
-          </div>
-        </div>
+      <Box sx={{ px: 2, mb: 3 }}>
+        <Button
+          sx={{
+            fontSize: 12,
+            textTransform: "none",
+            py: 0.5,
+          }}
+          variant="outlined"
+          onClick={() => alert("check click")}
+        >
+          Collectible Wallet
+        </Button>
+      </Box>
+      {/* ---------------------------Card--------------------------- */}
+      <Box
+        sx={{
+          px: 2,
+          mb: 3,
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 2,
+        }}
+      >
+        <Box
+          sx={{
+            width: 175,
+            height: 215,
+            borderRadius: 3,
+            bgcolor: "#3C3C3C",
+            position: "relative",
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
+            pt: 0.5,
+            pl: 0.5,
+            pr: 0.5,
+          }}
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              top: 8,
+              right: 8,
+              width: 27,
+              height: 27,
+            }}
+          >
+            <Image
+              src="/logo/bko.svg"
+              alt="Logo"
+              width={27}
+              height={27}
+              style={{ borderRadius: "6px" }}
+            />
+          </Box>
 
-        {/* Collected Stamps */}
-        <div className="space-y-4">
-          <h3 className="font-semibold">สแตมป์ที่เก็บแล้ว</h3>
-          <div className="text-center py-8">
-            <div className="w-16 h-16 bg-gray-100 rounded-full mx-auto flex items-center justify-center mb-3">
-              <span className="text-2xl">📭</span>
-            </div>
-            <p className="text-sm text-gray-500">ยังไม่มีสแตมป์</p>
-            <p className="text-xs text-gray-400 mt-1">ไปเก็บสแตมป์จากร้านค้าก่อน</p>
-          </div>
-        </div>
+          <Box
+            sx={{
+              width: "100%",
+              height: "176px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Image
+              src="/imgMock/Image2.svg"
+              alt="Artwork"
+              width={170}
+              height={176}
+              style={{
+                width: "100%",
+                height: "100%",
+                borderRadius: "8px",
+                objectFit: "cover",
+              }}
+            />
+          </Box>
 
-        {/* NFT Collection */}
-        <div className="space-y-4">
-          <h3 className="font-semibold">NFT Collection</h3>
-          <div className="text-center py-8">
-            <div className="w-16 h-16 bg-gray-100 rounded-full mx-auto flex items-center justify-center mb-3">
-              <span className="text-2xl">🎨</span>
-            </div>
-            <p className="text-sm text-gray-500">ยังไม่มี NFT</p>
-            <p className="text-xs text-gray-400 mt-1">สแกน QR Code เพื่อรับ NFT</p>
-          </div>
-        </div>
+          <Typography
+            variant="caption"
+            sx={{
+              color: "white",
+              fontSize: 11,
+              textAlign: "center",
+              mt: 1,
+              px: 1,
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
+          >
+            Puttrow Slowbar x Nui Kasorn
+          </Typography>
+        </Box>
 
-        {/* Action Buttons */}
-        <div className="space-y-3">
-          <button className="w-full bg-black text-white py-3 rounded-lg font-semibold">
-            ดูใน Bitkub NEXT
-          </button>
-          <button className="w-full bg-gray-100 text-gray-600 py-3 rounded-lg">
-            เปลี่ยนกระเป๋า
-          </button>
-        </div>
+        <Box
+          sx={{
+            width: 175,
+            height: 215,
+            borderRadius: 3,
+            bgcolor: "#3C3C3C",
+            position: "relative",
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
+            pt: 0.5,
+            pl: 0.5,
+            pr: 0.5,
+          }}
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              top: 8,
+              right: 8,
+              width: 27,
+              height: 27,
+            }}
+          >
+            <Image
+              src="/logo/bko.svg"
+              alt="Logo"
+              width={27}
+              height={27}
+              style={{ borderRadius: "6px" }}
+            />
+          </Box>
 
-        {/* Info */}
-        <div className="bg-gray-50 rounded-lg p-4">
-          <h3 className="font-semibold text-sm mb-2">เกี่ยวกับ NFT</h3>
-          <ul className="text-xs text-gray-600 space-y-1">
-            <li>• NFT จะถูกส่งไปยังกระเป๋า Bitkub NEXT</li>
-            <li>• สามารถดูได้ในแอป Bitkub NEXT</li>
-            <li>• NFT เป็นของจริงบน blockchain</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+          <Box
+            sx={{
+              width: "100%",
+              height: "176px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Image
+              src="/imgMock/Image3.svg"
+              alt="Artwork"
+              width={170}
+              height={176}
+              style={{
+                width: "100%",
+                height: "100%",
+                borderRadius: "8px",
+                objectFit: "cover",
+              }}
+            />
+          </Box>
+
+          <Typography
+            variant="caption"
+            sx={{
+              color: "white",
+              fontSize: 11,
+              textAlign: "center",
+              mt: 1,
+              px: 1,
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
+          >
+            Kokie x Homie
+          </Typography>
+        </Box>
+
+        <Box
+          sx={{
+            width: 175,
+            height: 215,
+            borderRadius: 3,
+            bgcolor: "#3C3C3C",
+            position: "relative",
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
+            pt: 0.5,
+            pl: 0.5,
+            pr: 0.5,
+          }}
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              top: 8,
+              right: 8,
+              width: 27,
+              height: 27,
+            }}
+          >
+            <Image
+              src="/logo/bko.svg"
+              alt="Logo"
+              width={27}
+              height={27}
+              style={{ borderRadius: "6px" }}
+            />
+          </Box>
+
+          <Box
+            sx={{
+              width: "100%",
+              height: "176px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Image
+              src="/imgMock/Image3.svg"
+              alt="Artwork"
+              width={170}
+              height={176}
+              style={{
+                width: "100%",
+                height: "100%",
+                borderRadius: "8px",
+                objectFit: "cover",
+              }}
+            />
+          </Box>
+
+          <Typography
+            variant="caption"
+            sx={{
+              color: "white",
+              fontSize: 11,
+              textAlign: "center",
+              mt: 1,
+              px: 1,
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
+          >
+            Kokie x Homie
+          </Typography>
+        </Box>
+      </Box>
+    </Box>
   );
 }

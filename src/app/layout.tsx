@@ -5,6 +5,7 @@ import { ThirdwebProvider } from "@/lib/thirdweb";
 import { AuthProvider } from "@/contexts/AuthContext";
 import BottomNav from "@/components/BottomNav";
 import Header from "@/components/Header";
+import { Box } from "@mui/material";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +35,16 @@ export default function RootLayout({
         <AuthProvider>
           <ThirdwebProvider>
             <Header />
-            <div className="pb-14">{children}</div>
+            <Box
+              sx={{
+                minHeight: "100vh",
+                bgcolor: "white",
+                pt: "76px", // 👈 เว้นระยะด้านบนเท่ากับ Header
+                pb: "40px", // 👈 (ถ้ามี BottomNav fixed ด้วย)
+              }}
+            >
+              {children}
+            </Box>
             <BottomNav />
           </ThirdwebProvider>
         </AuthProvider>
